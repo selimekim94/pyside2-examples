@@ -1,4 +1,0 @@
-Traceback (most recent call last):
-  File "/Users/reddevil/Desktop/dev/python/pysidexamples/thread.py", line 19, in run
-    self.signals.finished.emit()
-RuntimeError: Internal C++ object (MySignals) already deleted.
