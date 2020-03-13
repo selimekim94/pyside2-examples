@@ -23,30 +23,30 @@ class MainWindow(QMainWindow):
         self.button_stop.move(90, 30)
         self.show()
 
-        self.button_start.clicked.connect(self.on_start_button_clicked)
-        self.button_stop.clicked.connect(self.on_stop_button_clicked)
+        self.button_start.clicked.connect(self.on_start_button_click)
+        self.button_stop.clicked.connect(self.on_stop_button_click)
 
-    def on_start_button_clicked(self):
+    def on_start_button_click(self):
         self.button_start.setEnabled(False)
         self.active_thread_count = 0
         links = ['google.com', 'youtube.com', 'instagram.com', 'twitter.com', 'netflix.com']
         self.threads = []
         for link in links:
             self.thread = MyThread(link)
-            self.thread.signals.finished.connect(self.on_finished)
+            self.thread.signals.finished.connect(self.on_finish)
             self.threads.append(self.thread)
 
         for thread in self.threads:
             self.thread_pool.start(thread)
             self.active_thread_count += 1
 
-    def on_stop_button_clicked(self):
+    def on_stop_button_click(self):
         print('Threads stopping...')
         self.button_start.setEnabled(False)
         self.thread_pool.clear()
         self.active_thread_count = self.thread_pool.activeThreadCount()
 
-    def on_finished(self):
+    def on_finish(self):
         self.active_thread_count -= 1
         if self.active_thread_count == 0:
             print('Finished All Jobs')
