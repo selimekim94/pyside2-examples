@@ -23,10 +23,10 @@ class MainWindow(QMainWindow):
         self.button_stop.move(90, 30)
         self.show()
 
-        self.button_start.clicked.connect(self.on_start_button_click)
-        self.button_stop.clicked.connect(self.on_stop_button_click)
+        self.button_start.clicked.connect(self.on_button_start_click)
+        self.button_stop.clicked.connect(self.on_button_stop_click)
 
-    def on_start_button_click(self):
+    def on_button_start_click(self):
         self.button_start.setEnabled(False)
         self.active_thread_count = 0
         links = ['google.com', 'youtube.com', 'instagram.com', 'twitter.com', 'netflix.com']
@@ -40,7 +40,7 @@ class MainWindow(QMainWindow):
             self.thread_pool.start(thread)
             self.active_thread_count += 1
 
-    def on_stop_button_click(self):
+    def on_button_stop_click(self):
         print('Threads stopping...')
         self.button_start.setEnabled(False)
         self.thread_pool.clear()
